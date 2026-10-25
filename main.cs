@@ -3,13 +3,12 @@ using System.Reflection;
 
 class Animal
 {
-    public string breed, name;
+    public string name;
     public int age, weight;
     public float height;
 
     public Animal()
     {
-        breed = "";
         name = "";
         age = -1;
         weight = -1;
@@ -18,11 +17,33 @@ class Animal
 
     public void Display()
     {
-        Console.WriteLine("Breed: " + breed);
         Console.WriteLine("Name: " + name);
         Console.WriteLine("Age: " + age);
         Console.WriteLine("Weight: " + weight);
         Console.WriteLine("Height: " + height);
+    }
+}
+
+class Dog : Animal //inheritance
+{
+    public string breed; //Specific attribute for dog
+    public Dog() //constructor
+    {
+        breed = "";
+    }
+    public void AnimalSound() 
+    {
+        Console.WriteLine("Woof Woof");
+    }
+    public new void Display()
+    {
+        base.Display(); //base keyword can use original class' method
+        Console.WriteLine("Breed: " + breed);
+    }
+
+    public void Trick() //dog specific method
+    {
+        Console.WriteLine( name + " spins around.");
     }
 }
 
@@ -31,7 +52,7 @@ class Program
     static int Main()
     {
         // creating an object
-        Animal dog = new Animal();
+        Dog dog = new Dog();
 
         dog.breed = "French Bulldog";
         dog.name = "Peanut";
@@ -40,7 +61,7 @@ class Program
         dog.height = 30.1f;
 
         dog.Display();
-
+        dog.Trick();
         return 0;
     }
 }
